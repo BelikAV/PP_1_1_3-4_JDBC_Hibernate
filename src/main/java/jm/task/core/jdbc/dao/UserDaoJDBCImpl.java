@@ -43,13 +43,12 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        String sql = "INSERT INTO users (name, last_Name, age) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO users (name, last_name, age) VALUES (?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, name);
             pstmt.setString(2, lastName);
             pstmt.setByte(3, age);
             pstmt.executeUpdate();
-            System.out.println("User с именем - " + name + " добавлен в базу данных");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -77,7 +76,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 User user = new User();
                 user.setId(rs.getLong("id"));
                 user.setName(rs.getString("name"));
-                user.setLastName(rs.getString("last_Name"));
+                user.setLastName(rs.getString("last_name"));
                 user.setAge(rs.getByte("age"));
                 users.add(user);
             }

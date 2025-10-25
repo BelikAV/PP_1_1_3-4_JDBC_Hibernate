@@ -7,7 +7,7 @@ import jm.task.core.jdbc.model.User;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    UserDao usd = new UserDaoJDBCImpl();
+    private final UserDao usd = new UserDaoJDBCImpl();
 
     @Override
     public void createUsersTable() {
@@ -23,7 +23,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(String name, String lastName, byte age) {
         usd.saveUser(name, lastName, age);
+        System.out.println("User с именем - " + name + " добавлен в базу данных");
     }
+
 
     @Override
     public void removeUserById(long id) {
